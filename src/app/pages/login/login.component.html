@@ -1,0 +1,46 @@
+<div class="card height-100">
+	<div class="flex align-content-center flex-wrap card-container height-100">
+		<div class="col-6 col-offset-3">
+			<div class="col">
+				<span><h3>Login</h3></span>
+			</div>
+			<form [formGroup]="loginForm">
+				<div class="p-inputgroup col">
+					<span class="p-inputgroup-addon">
+						<i class="pi pi-user"></i>
+					</span>
+					<span class="p-float-label">
+						<input type="text" id="username" pInputText formControlName="username">
+						<label for="username">Username</label>
+					</span>
+				</div>
+				<div class="p-inputgroup col">
+					<span class="p-inputgroup-addon">
+						<i class="pi pi-lock"></i>
+					</span>
+					<span class="p-float-label">
+						<input type="password" id="password" pInputText formControlName="password">
+						<label for="password">Password</label>
+					</span>
+				</div>
+				<div class="p-inputgroup col">
+					<span class="w-full">
+						<label for="dropdown">Realm</label>
+						<p-dropdown id="dropdown" inputId="dropdown" [options]="domains" [style]="{'width': '100%'}"
+									optionValue="realm" optionLabel="comment" formControlName="realm"></p-dropdown>
+					</span>
+				</div>
+				<!--				todo add language select-->
+			</form>
+			<div class="col">
+				<div class="p-field-checkbox">
+					<p-checkbox [(ngModel)]="checked" inputId="rememberMe" id="rememberMe"></p-checkbox>
+					<label for="rememberMe">Remember me</label>
+				</div>
+			</div>
+			<div class="col">
+				<p-button label="Submit" (click)="onSubmit()"></p-button>
+			</div>
+		</div>
+	</div>
+</div>
