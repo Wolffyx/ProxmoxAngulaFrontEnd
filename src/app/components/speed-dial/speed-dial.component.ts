@@ -25,9 +25,9 @@ export class SpeedDialComponent implements OnInit {
 				}
 			},
 			{
-				tooltip:"Create container",
+				tooltip: "Create container",
 				tooltipPosition: 'left',
-				icon: 'pi pi-inbox',
+				icon: 'fas fa-box',
 				command: () => {
 					this.messageService.add({severity: 'success', summary: 'Update', detail: 'Data Updated'});
 				}

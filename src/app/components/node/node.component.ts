@@ -7,11 +7,11 @@ interface City {
 }
 
 @Component({
-	selector: 'app-header',
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	selector: 'app-node',
+	templateUrl: './node.component.html',
+	styleUrls: ['./node.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class NodeComponent implements OnInit {
 
 	items: MenuItem[] = [];
 	cities: City[];

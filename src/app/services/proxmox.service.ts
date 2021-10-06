@@ -5,12 +5,15 @@ import { tap } from 'rxjs/operators';
 import { Ticket } from '../interfaces/ticket';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
+import { Node } from '../interfaces/node';
+import { Log } from '../interfaces/log';
+import { Task } from '../interfaces/task';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ProxmoxService {
-	constructor(private http: HttpClient, private cookieService:CookieService) {
+	constructor(private http: HttpClient, private cookieService: CookieService) {
 	}
 
 	//todo fix login page
@@ -19,8 +22,8 @@ export class ProxmoxService {
 		body.set('username', params.username);
 		body.set('password', params.password);
 		body.set('realm', params.realm);
-		return this.http.post<Ticket>('/access/ticket', body,{
-			headers:{
+		return this.http.post<Ticket>('/access/ticket', body, {
+			headers: {
 				skip:"true"
 			}
 		}).pipe(
@@ -28,26 +31,27 @@ export class ProxmoxService {
 				localStorage.setItem('ticket', response.ticket)
 				localStorage.setItem('CSRFPreventionToken', response.CSRFPreventionToken)
 				localStorage.setItem('username', response.username)
-				this.cookieService.set("PVEAuthCookie",response.ticket,237,"/",`${environment.url}:${environment.port}`)
+				this.cookieService.set("PVEAuthCookie", response.ticket, 237, "/", `${environment.url}:${environment.port}`)
 			}),
 		).toPromise()
 	}
-	getToken(){
+
+	getToken() {
 		return localStorage.getItem('token')
 	}
-	async logout(doApiRequest = true) {``
-		const data = {
-			token: localStorage.getItem('token'),
-		}
-		// if (doApiRequest) {
-		// 	await this.deleteToken(data)
+
+	async logout() {
+		// const data = {
+		// 	token: localStorage.getItem('token'),
 		// }
 		localStorage.removeItem('token')
 	}
-	//todo make logout system
-	deleteToken(tokens:any) {
+
+	//todo make logout system work
+	deleteToken(tokens: any) {
 		return this.http.post<void>(``, tokens).toPromise()
 	}
+
 	apiVersion() {
 		return this.http.get('/version').toPromise()
 	}
@@ -56,7 +60,17 @@ export class ProxmoxService {
 		return this.http.get<Domain[]>('/access/domains').toPromise()
 	}
 
-	//todo add times to every function
+	logs() {
+		return this.http.get<Log[]>('/cluster/log').toPromise()
+
+	}
+
+	tasks() {
+		return this.http.get<Task[]>('/cluster/tasks').toPromise()
+
+	}
+
+	//todo add types to every function
 
 	// storage
 	// https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage
@@ -105,7 +119,7 @@ export class ProxmoxService {
 	// nodes
 	// https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes
 	getNodes() {
-		return this.http.get('/nodes').toPromise()
+		return this.http.get<Node[]>('/nodes').toPromise()
 	}
 
 	// https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/wakeonlan

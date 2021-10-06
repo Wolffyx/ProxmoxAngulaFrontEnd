@@ -26,6 +26,7 @@
 		"angular-user-idle": "^2.2.7",
 		"chart.js": "^3.5.1",
 		"font-awesome": "^4.7.0",
+		"material-icons": "^1.7.0",
 		"ng-zorro-antd": "^12.0.1",
 		"ngx-cookie-service": "^12.0.3",
 		"primeflex": "^3.0.1",

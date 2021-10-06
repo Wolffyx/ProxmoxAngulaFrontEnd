@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { ProxmoxService } from '../services/proxmox.service';
 import { environment } from '../../environments/environment';
@@ -33,7 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
 			request = request.clone({
 				setHeaders: {
 					Authorization: `PVEAPIToken=${environment.proxmoxTokenIDApi}=${environment.proxmoxApi}`,
-					// Cookie:`PVEAuthCookie=${token}`
 				},
 				withCredentials:true
 			})

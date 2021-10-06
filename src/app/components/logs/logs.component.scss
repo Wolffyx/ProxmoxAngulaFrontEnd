@@ -1,0 +1,19 @@
+:host {
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+
+p-sidebar {
+	.logsSize {
+		width: 500px !important;
+	}
+
+	.p-sidebar-content {
+		overflow: hidden;
+	}
+}
+
+.test {
+	color: #000;
+}

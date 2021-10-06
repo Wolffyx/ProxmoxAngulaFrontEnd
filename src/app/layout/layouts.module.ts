@@ -12,6 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ToastModule } from 'primeng/toast';
 		InputTextModule,
 		DropdownModule,
 		SplitButtonModule,
-		ToastModule
+		ToastModule,
+		PanelMenuModule,
+		ComponentsModule
 	]
 })
 export class LayoutsModule {

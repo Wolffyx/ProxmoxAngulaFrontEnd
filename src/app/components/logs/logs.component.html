@@ -1,0 +1,80 @@
+<p-sidebar [(visible)]="visible" [baseZIndex]="10000" [fullScreen]="fullscreen" [position]="position"
+		   [showCloseIcon]="false" [style]="{width:'80%', overflow:'hidden'}">
+	<p-tabView (onChange)="handleChange($event)" [activeIndex]="0">
+		<p-tabPanel header="Tasks">
+			<p-table [resizableColumns]="true" [scrollable]="true" [value]="tasks" scrollHeight="flex">
+				<ng-template pTemplate="header">
+					<tr>
+						<th pResizableColumn pSortableColumn="user">Username
+							<p-sortIcon field="user"></p-sortIcon>
+						</th>
+						<th pResizableColumn pSortableColumn="node">Node
+							<p-sortIcon field="node"></p-sortIcon>
+						</th>
+						<th pResizableColumn pSortableColumn="type">Description
+							<p-sortIcon field="type"></p-sortIcon>
+						</th>
+						<th pResizableColumn pSortableColumn="status">Status
+							<p-sortIcon field="status"></p-sortIcon>
+						</th>
+						<th pResizableColumn pSortableColumn="starttime">Start time
+							<p-sortIcon field="starttime"></p-sortIcon>
+						</th>
+						<th pResizableColumn pSortableColumn="endtime">End tipe
+							<p-sortIcon field="endtime"></p-sortIcon>
+						</th>
+					</tr>
+				</ng-template>
+				<ng-template let-task pTemplate="body">
+					<tr>
+						<td>{{task.user}}</td>
+						<td>{{task.node}}</td>
+						<td>{{task.type}}</td>
+						<td>{{task.status}}</td>
+						<td>{{task.starttime * 1000 |date:"MM/dd hh:mm:ss a"}}</td>
+						<td>{{task.endtime * 1000 |date:"MM/dd hh:mm:ss a"}}</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		</p-tabPanel>
+		<p-tabPanel header="Cluster">
+			<p-table [resizableColumns]="true" [scrollable]="true" [value]="logs" scrollHeight="flex">
+				<ng-template pTemplate="header">
+					<tr>
+						<th pSortableColumn="user">Username
+							<p-sortIcon field="user"></p-sortIcon>
+						</th>
+						<th pSortableColumn="node">Node
+							<p-sortIcon field="node"></p-sortIcon>
+						</th>
+						<th pSortableColumn="tag">Service
+							<p-sortIcon field="tag"></p-sortIcon>
+						</th>
+						<th pSortableColumn="pid">PID
+							<p-sortIcon field="pid"></p-sortIcon>
+						</th>
+						<th pSortableColumn="time">Time
+							<p-sortIcon field="time"></p-sortIcon>
+						</th>
+						<th pSortableColumn="msg">Message
+							<p-sortIcon field="msg"></p-sortIcon>
+						</th>
+					</tr>
+				</ng-template>
+				<ng-template let-task pTemplate="body">
+					<tr>
+						<td>{{task.user}}</td>
+						<td>{{task.node}}</td>
+						<td>{{task.tag}}</td>
+						<td>{{task.pid}}</td>
+						<td>{{task.time * 1000 |date:"MM/dd hh:mm:ss a"}}</td>
+						<td>{{task.msg}}</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		</p-tabPanel>
+	</p-tabView>
+</p-sidebar>
+
+<p-button (click)="showLogs()" class="p-mr-2" icon="fas fa-clipboard-list" pTooltip="Logs" styleClass="p-button-lg"
+		  type="button"></p-button>
